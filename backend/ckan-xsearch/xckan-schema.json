@@ -1,0 +1,671 @@
+{
+  "add-field-type": [
+    {
+      "name": "int",
+      "class": "solr.IntPointField",
+      "omitNorms": true,
+      "positionIncrementGap": 0
+    },
+    {
+      "name": "float",
+      "class": "solr.FloatPointField",
+      "omitNorms": true,
+      "positionIncrementGap": 0
+    },
+    {
+      "name": "long",
+      "class": "solr.LongPointField",
+      "omitNorms": true,
+      "positionIncrementGap": 0
+    },
+    {
+      "name": "double",
+      "class": "solr.DoublePointField",
+      "omitNorms": true,
+      "positionIncrementGap": 0
+    },
+    {
+      "name": "tint",
+      "class": "solr.IntPointField",
+      "omitNorms": true,
+      "positionIncrementGap": 0
+    },
+    {
+      "name": "tfloat",
+      "class": "solr.FloatPointField",
+      "omitNorms": true,
+      "positionIncrementGap": 0
+    },
+    {
+      "name": "tlong",
+      "class": "solr.LongPointField",
+      "omitNorms": true,
+      "positionIncrementGap": 0
+    },
+    {
+      "name": "tdouble",
+      "class": "solr.DoublePointField",
+      "omitNorms": true,
+      "positionIncrementGap": 0
+    },
+    {
+      "name": "date",
+      "class": "solr.DatePointField",
+      "omitNorms": true,
+      "positionIncrementGap": 0
+    },
+    {
+      "name": "tdate",
+      "class": "solr.DatePointField",
+      "omitNorms": true,
+      "positionIncrementGap": 0
+    },
+    {
+      "name": "tdates",
+      "class": "solr.DatePointField",
+      "positionIncrementGap": 0,
+      "multiValued": true
+    },
+    {
+      "name": "tints",
+      "class": "solr.IntPointField",
+      "omitNorms": true,
+      "positionIncrementGap": 0,
+      "multiValued": true
+    },
+    {
+      "name": "tfloats",
+      "class": "solr.FloatPointField",
+      "omitNorms": true,
+      "positionIncrementGap": 0,
+      "multiValued": true
+    },
+    {
+      "name": "tlongs",
+      "class": "solr.LongPointField",
+      "omitNorms": true,
+      "positionIncrementGap": 0,
+      "multiValued": true
+    },
+    {
+      "name": "tdoubles",
+      "class": "solr.DoublePointField",
+      "omitNorms": true,
+      "positionIncrementGap": 0,
+      "multiValued": true
+    }
+  ],
+  "add-field": [
+    {
+      "name": "index_id",
+      "type": "string",
+      "indexed": false,
+      "stored": false,
+      "required": false
+    },
+    {
+      "name": "xckan_title",
+      "type": "string",
+      "indexed": true,
+      "stored": true,
+      "required": true
+    },
+    {
+      "name": "xckan_site_name",
+      "type": "string",
+      "indexed": true,
+      "stored": true,
+      "required": true
+    },
+    {
+      "name": "xckan_site_url",
+      "type": "string",
+      "indexed": true,
+      "stored": true,
+      "required": true
+    },
+    {
+      "name": "xckan_last_updated",
+      "type": "tdate",
+      "indexed": true,
+      "stored": true,
+      "required": true
+    },
+    {
+      "name": "xckan_description",
+      "type": "string",
+      "indexed": true,
+      "stored": true,
+      "required": true
+    },
+    {
+      "name": "xckan_tags",
+      "type": "string",
+      "indexed": true,
+      "stored": true,
+      "multiValued": true,
+    },
+    {
+      "name": "title",
+      "type": "text_ja",
+      "indexed": true,
+      "stored": true
+    },
+    {
+      "name": "entity_type",
+      "type": "string",
+      "indexed": true,
+      "stored": true,
+      "omitNorms": true
+    },
+    {
+      "name": "dataset_type",
+      "type": "string",
+      "indexed": true,
+      "stored": true
+    },
+    {
+      "name": "state",
+      "type": "string",
+      "indexed": true,
+      "stored": true
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "indexed": true,
+      "stored": true,
+      "omitNorms": true
+    },
+    {
+      "name": "revision_id",
+      "type": "string",
+      "indexed": true,
+      "stored": true,
+      "omitNorms": true
+    },
+    {
+      "name": "version",
+      "type": "string",
+      "indexed": true,
+      "stored": true
+    },
+    {
+      "name": "url",
+      "type": "string",
+      "indexed": true,
+      "stored": true,
+      "omitNorms": true
+    },
+    {
+      "name": "ckan_url",
+      "type": "string",
+      "indexed": true,
+      "stored": true,
+      "omitNorms": true
+    },
+    {
+      "name": "download_url",
+      "type": "string",
+      "indexed": true,
+      "stored": true,
+      "omitNorms": true
+    },
+    {
+      "name": "notes",
+      "type": "text_ja",
+      "indexed": true,
+      "stored": true
+    },
+    {
+      "name": "author",
+      "type": "text_ja",
+      "indexed": true,
+      "stored": true
+    },
+    {
+      "name": "author_email",
+      "type": "text_ja",
+      "indexed": true,
+      "stored": true
+    },
+    {
+      "name": "maintainer",
+      "type": "text_ja",
+      "indexed": true,
+      "stored": true
+    },
+    {
+      "name": "maintainer_email",
+      "type": "text_ja",
+      "indexed": true,
+      "stored": true
+    },
+    {
+      "name": "license",
+      "type": "string",
+      "indexed": true,
+      "stored": true
+    },
+    {
+      "name": "license_id",
+      "type": "string",
+      "indexed": true,
+      "stored": true
+    },
+    {
+      "name": "ratings_count",
+      "type": "int",
+      "indexed": true,
+      "stored": false
+    },
+    {
+      "name": "tags",
+      "type": "string",
+      "indexed": true,
+      "stored": true,
+      "multiValued": true
+    },
+    {
+      "name": "groups",
+      "type": "string",
+      "indexed": true,
+      "stored": true,
+      "multiValued": true
+    },
+    {
+      "name": "organization",
+      "type": "string",
+      "indexed": true,
+      "stored": true,
+      "multiValued": false
+    },
+    {
+      "name": "capacity",
+      "type": "string",
+      "indexed": true,
+      "stored": true,
+      "multiValued": false
+    },
+    {
+      "name": "permission_labels",
+      "type": "string",
+      "indexed": true,
+      "stored": false,
+      "multiValued": true
+    },
+    {
+      "name": "res_name",
+      "type": "text_ja",
+      "indexed": true,
+      "stored": true,
+      "multiValued": true
+    },
+    {
+      "name": "res_description",
+      "type": "text_ja",
+      "indexed": true,
+      "stored": true,
+      "multiValued": true
+    },
+    {
+      "name": "res_format",
+      "type": "string",
+      "indexed": true,
+      "stored": true,
+      "multiValued": true
+    },
+    {
+      "name": "res_url",
+      "type": "string",
+      "indexed": true,
+      "stored": true,
+      "multiValued": true
+    },
+    {
+      "name": "res_type",
+      "type": "string",
+      "indexed": true,
+      "stored": true,
+      "multiValued": true
+    },
+    {
+      "name": "text",
+      "type": "text_ja",
+      "indexed": true,
+      "stored": false,
+      "multiValued": true
+    },
+    {
+      "name": "urls",
+      "type": "text_ja",
+      "indexed": true,
+      "stored": false,
+      "multiValued": true
+    },
+    {
+      "name": "depends_on",
+      "type": "text_ja",
+      "indexed": true,
+      "stored": false,
+      "multiValued": true
+    },
+    {
+      "name": "dependency_of",
+      "type": "text_ja",
+      "indexed": true,
+      "stored": false,
+      "multiValued": true
+    },
+    {
+      "name": "derives_from",
+      "type": "text_ja",
+      "indexed": true,
+      "stored": false,
+      "multiValued": true
+    },
+    {
+      "name": "has_derivation",
+      "type": "text_ja",
+      "indexed": true,
+      "stored": false,
+      "multiValued": true
+    },
+    {
+      "name": "links_to",
+      "type": "text_ja",
+      "indexed": true,
+      "stored": false,
+      "multiValued": true
+    },
+    {
+      "name": "linked_from",
+      "type": "text_ja",
+      "indexed": true,
+      "stored": false,
+      "multiValued": true
+    },
+    {
+      "name": "child_of",
+      "type": "text_ja",
+      "indexed": true,
+      "stored": false,
+      "multiValued": true
+    },
+    {
+      "name": "parent_of",
+      "type": "text_ja",
+      "indexed": true,
+      "stored": false,
+      "multiValued": true
+    },
+    {
+      "name": "views_total",
+      "type": "int",
+      "indexed": true,
+      "stored": false
+    },
+    {
+      "name": "views_recent",
+      "type": "int",
+      "indexed": true,
+      "stored": false
+    },
+    {
+      "name": "resources_accessed_total",
+      "type": "int",
+      "indexed": true,
+      "stored": false
+    },
+    {
+      "name": "resources_accessed_recent",
+      "type": "int",
+      "indexed": true,
+      "stored": false
+    },
+    {
+      "name": "metadata_created",
+      "type": "date",
+      "indexed": true,
+      "stored": true,
+      "multiValued": false
+    },
+    {
+      "name": "metadata_modified",
+      "type": "date",
+      "indexed": true,
+      "stored": true,
+      "multiValued": false
+    },
+    {
+      "name": "indexed_ts",
+      "type": "date",
+      "indexed": true,
+      "stored": true,
+      "default": "NOW",
+      "multiValued": false
+    },
+    {
+      "name": "title_string",
+      "type": "string",
+      "indexed": true,
+      "stored": false
+    },
+    {
+      "name": "data_dict",
+      "type": "string",
+      "indexed": false,
+      "stored": true,
+      "docValues": false,
+      "multiValued": false
+    }
+  ],
+  "replace-field": [
+    {
+      "name": "_text_",
+      "type": "text_ja",
+      "multiValued": true,
+      "indexed": true,
+      "stored": false
+    }
+  ],
+  "add-dynamic-field": [
+    {
+      "name": "resources.*",
+      "type": "string",
+      "indexed": true,
+      "stored": true,
+      "multiValued": true
+    },
+    {
+      "name": "extras.*",
+      "type": "string",
+      "indexed": true,
+      "stored": true,
+      "multiValued": true
+    },
+    {
+      "name": "groups.*",
+      "type": "string",
+      "indexed": true,
+      "stored": true,
+      "multiValued": true
+    },
+    {
+      "name": "tags.*",
+      "type": "string",
+      "indexed": true,
+      "stored": true,
+      "multiValued": true
+    },
+    {
+      "name": "*_date",
+      "type": "string",
+      "indexed": true,
+      "stored": true
+    },
+    {
+      "name": "extras_*",
+      "type": "text_ja",
+      "indexed": true,
+      "stored": true,
+      "multiValued": false
+    },
+    {
+      "name": "res_extras_*",
+      "type": "text_ja",
+      "indexed": true,
+      "stored": true,
+      "multiValued": true
+    },
+    {
+      "name": "vocab_*",
+      "type": "string",
+      "indexed": true,
+      "stored": true,
+      "multiValued": true
+    },
+    {
+      "name": "*",
+      "type": "string",
+      "indexed": false,
+      "stored": true,
+      "docValues": false,
+      "multiValued": true
+    }
+  ],
+  "add-copy-field": [
+    {
+      "source": "url",
+      "dest": [
+        "urls"
+      ]
+    },
+    {
+      "source": "ckan_url",
+      "dest": [
+        "urls"
+      ]
+    },
+    {
+      "source": "download_url",
+      "dest": [
+        "urls"
+      ]
+    },
+    {
+      "source": "res_url",
+      "dest": [
+        "urls"
+      ]
+    },
+    {
+      "source": "extras_*",
+      "dest": [
+        "_text_"
+      ]
+    },
+    {
+      "source": "res_extras_*",
+      "dest": [
+        "_text_"
+      ]
+    },
+    {
+      "source": "vocab_*",
+      "dest": [
+        "_text_"
+      ]
+    },
+    {
+      "source": "urls",
+      "dest": [
+        "_text_"
+      ]
+    },
+    {
+      "source": "name",
+      "dest": [
+        "_text_"
+      ]
+    },
+    {
+      "source": "title",
+      "dest": [
+        "_text_"
+      ]
+    },
+    {
+      "source": "text",
+      "dest": [
+        "_text_"
+      ]
+    },
+    {
+      "source": "license",
+      "dest": [
+        "_text_"
+      ]
+    },
+    {
+      "source": "notes",
+      "dest": [
+        "_text_"
+      ]
+    },
+    {
+      "source": "tags",
+      "dest": [
+        "_text_"
+      ]
+    },
+    {
+      "source": "groups",
+      "dest": [
+        "_text_"
+      ]
+    },
+    {
+      "source": "organization",
+      "dest": [
+        "_text_"
+      ]
+    },
+    {
+      "source": "res_name",
+      "dest": [
+        "_text_"
+      ]
+    },
+    {
+      "source": "res_description",
+      "dest": [
+        "_text_"
+      ]
+    },
+    {
+      "source": "maintainer",
+      "dest": [
+        "_text_"
+      ]
+    },
+    {
+      "source": "author",
+      "dest": [
+        "_text_"
+      ]
+    },
+    {
+      "source": "xckan_description",
+      "dest": [
+        "_text_"
+      ]
+    },
+    {
+      "source": "xckan_tags",
+      "dest": [
+        "_text_"
+      ]
+    }
+  ]
+}

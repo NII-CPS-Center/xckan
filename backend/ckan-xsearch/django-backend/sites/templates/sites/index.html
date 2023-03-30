@@ -1,0 +1,79 @@
+<!-- Bootstrap4 -->
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+<!-- Bootstrap4 -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>XCKAN Backend Service</title>
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />    
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+    <script src="/static/admin/js/vendor/jquery/jquery.js"></script>
+    <script src="{% static 'sites/sample.js' %}" ></script>
+    <!--link type="text/css" rel="stylesheet" href="{% static 'sites/sample.css' %}" /-->
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+    <meta name="robots" content="NONE,NOARCHIVE">
+    <style type="text/css">
+        #notes {
+            margin:  10px;
+            padding: 10px;
+            border: solid 1px #ccc;
+        }
+
+        #results {
+            margin:  10px;
+            border:  solid 1px #417690;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <!-- Header -->
+        <div id="header">
+            <div id="branding">
+                <h1 id="site-name">XCKAN Backend Service</h1>
+            </div>
+            {% include "sites/block_user_tools.html" %}
+        </div>
+        <!-- End Header -->
+
+        <!--div class="breadcrumbs">
+            <a href="/">トップページ</a> | 
+            <a href="{% url 'index' %}">CKANサイト一覧</a> |
+            {% if user.is_authenticated %}
+                <a href="{% url 'admin:index' %}">管理サイト</a> |
+                <a href="{% url 'admin:logout' %}?next=/">ログアウト</a>
+            {% else %}
+                <a href="{% url 'admin:login' %}?next=/">ログイン</a>
+            {% endif %}
+        </div-->
+
+        <div id="content">
+            {% include "sites/block_messagelist.html" %}
+           
+            <div class="content">
+                全文検索: <input type="text" size="40" id="query" placeholder="Input search text (ex. 新型コロナ)" /><br />
+                項目検索: <input type="text" size="80" id="fq" placeholder="<field>:<value>, AND/OR 利用可能" /><br />
+                開始オフセット: <input type="text" size="3" id="start" value="0">,
+                検索件数: <input type="text" size="3" id="rows" value="10">
+                <input class="default" type="button" id="btn_query" value="検索"/>
+            </div>
+            <div id="results">（ここに検索結果が表示されます）</div>
+
+            <div id="notes">
+                <p>利用可能な API の一覧</p>
+                <ul>
+                    <li><a href="{% url 'package_list' %}?start=0&rows=1000">package_list</a></li>
+                    <li><a href="{% url 'package_show' %}?id=www.data.go.jp:c0325f7e-2544-4b4c-9171-3c2a5b225763">package_show?id=_id_</a></li>
+                    <li><a href="{% url 'package_search' %}?q=(消費%20AND%20平成28)">package_search?q=_query_</a></li>
+                    <li><a href="{% url 'stat' %}">Show site statistics</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

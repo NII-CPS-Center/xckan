@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+#btn_validate, #btn_edit {
+    padding:  10px 15px;
+    border:  none;
+    background-color:  var(--secondary);
+}
+
+.form-row span {
+    padding:  4px 10px 0 0;
+    line-height: 1;
+}

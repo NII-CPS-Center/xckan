@@ -1,0 +1,61 @@
+version: '3.7'
+services:
+  solr:
+    image: solr:8.11.2
+    container_name: xckan-docker-solr
+    environment:
+      VERBOSE: "no"
+    ports:
+      - "28983:8983"
+    volumes:
+      - type: volume
+        source: solr_volume
+        target: /var/solr
+    command: 
+      - solr-precreate
+      - ckan-xsearch
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      args:
+        DJANGO_SUPERUSER_USERNAME: ${DJANGO_SUPERUSER_USERNAME:-xckan-docker}
+        DJANGO_SUPERUSER_PASSWORD: ${DJANGO_SUPERUSER_PASSWORD:-xckan-docker}
+        DJANGO_SUPERUSER_EMAIL: ${DJANGO_SUPERUSER_EMAIL:-xckan-docker@example.com}
+    container_name: xckan-docker-backend
+    ports:
+      - "25000:5000"
+    depends_on:
+      - "solr"
+    volumes:
+      - type: volume
+        source: backend_volume
+        target: /ext
+      - type: bind
+        source: ./backend
+        target: /app/
+    environment:
+      XCKAN_ALLOWED_HOSTS: ${XCKAN_ALLOWED_HOSTS:-localhost}
+      XCKAN_SYSTEM_NAME: ${XCKAN_SYSTEM_NAME}
+      XCKAN_SYSTEM_FROM: ${XCKAN_SYSTEM_FROM}
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_USER: ${SMTP_USER}
+      SMTP_PASS: ${SMTP_PASS}
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        SERVER_HOST: ${FRONTEND_HOSTS:-0.0.0.0}
+        BACKEND_API: ${BACKEND_API:-http://localhost:25000/api}
+        API_LOG:
+    container_name: xckan-docker-frontend
+    ports:
+      - "23000:3000"
+
+volumes:
+  solr_volume: {}
+  backend_volume: {}

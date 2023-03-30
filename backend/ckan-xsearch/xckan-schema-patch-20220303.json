@@ -1,0 +1,19 @@
+{
+  "add-field": [
+    {
+      "name": "xckan_description",
+      "type": "string",
+      "indexed": true,
+      "stored": true,
+      "required": true
+    }
+  ],
+  "add-copy-field": [
+    {
+      "source": "xckan_description",
+      "dest": [
+        "_text_"
+      ]
+    }
+  ]
+}

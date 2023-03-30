@@ -1,0 +1,36 @@
+{
+    "name": "sip2-ckan",
+    "scripts": {
+        "dev": "nuxt-ts",
+        "build": "nuxt-ts build",
+        "geenrate": "nuxt-ts generate",
+        "start": "nuxt-ts start",
+        "test": "jest"
+    },
+    "dependencies": {
+        "@nuxt/content": "^1.15.1",
+        "@nuxt/typescript-runtime": "^1.0.0",
+        "@nuxtjs/axios": "^5.12.1",
+        "@nuxtjs/google-gtag": "^1.0.4",
+        "@types/body-scroll-lock": "^2.6.1",
+        "body-scroll-lock": "^3.1.5",
+        "moment": "^2.28.0",
+        "nuxt": "^2.14.3",
+        "nuxt-property-decorator": "^2.7.2",
+        "vue-class-component": "^7.2.5",
+        "vuex-module-decorators": "^0.17.0"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.11.1",
+        "@babel/plugin-proposal-decorators": "^7.10.5",
+        "@babel/preset-env": "^7.11.0",
+        "@babel/preset-typescript": "^7.10.4",
+        "@nuxt/types": "^2.14.3",
+        "@nuxt/typescript-build": "^2.0.2",
+        "@types/jest": "^26.0.20",
+        "babel-jest": "^26.3.0",
+        "jest": "^26.4.0",
+        "ts-jest": "^26.2.0",
+        "vue-jest": "^3.0.6"
+    }
+}

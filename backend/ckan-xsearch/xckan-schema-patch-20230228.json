@@ -1,0 +1,19 @@
+{
+  "add-field": [
+    {
+      "name": "xckan_tags",
+      "type": "string",
+      "indexed": true,
+      "stored": true,
+      "multiValued": true
+    }
+  ],
+  "add-copy-field": [
+    {
+      "source": "xckan_tags",
+      "dest": [
+        "_text_"
+      ]
+    }
+  ]
+}

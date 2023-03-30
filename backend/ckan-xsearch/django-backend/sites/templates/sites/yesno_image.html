@@ -1,0 +1,9 @@
+{% if value is True %}
+	<img src="/static/admin/img/icon-yes.svg" alt="True">
+{% elif value is False or value == "False" %}
+	<img src="/static/admin/img/icon-no.svg" alt="False">
+{% elif value is None %}
+	-
+{% else %}
+    {{ value }}
+{% endif %}

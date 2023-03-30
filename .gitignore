@@ -1,0 +1,9 @@
+.nuxt
+.env
+*.zip
+*.tgz
+
+/volumes/backend_cache/*
+/volumes/solr/*
+
+!.gitkeep
