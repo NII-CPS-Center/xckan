@@ -1,0 +1,184 @@
+﻿4．データカタログ項目定義仕様,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,
+"①
+項目No","②
+クラス名称","③
+プロパティ名称","④
+見出し","⑤
+定義","⑥
+値域","⑦
+使い方","⑧
+出現回数","⑨
+サンプル値",,"⑩実装における
+変数名
+（CKAN）","⑪値域
+
+（CKAN）","⑫列挙型
+区分
+(CKAN)","⑬出現回数
+
+(CKAN)","⑭複数値
+記載許可
+(CKAN)","⑮入力必須
+項目
+（CKAN）",,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,
+10000,dcat:Catalog,,カタログ,,,,,,,,,,,,,,,,,,,,,,
+10010,dcat:Catalog,dct:title,カタログのタイトル,このカタログの名称である。,rdfs:Literal,登録しようとしているデータをひと言で言い表すタイトルを記載する。,1..n,新日本市オープンデータカタログ,,設定ファイル(CKAN configuration file)の　ckan.site_title,text,ー,1..1,No,必須,,,,,,,,,,
+10020,dcat:Catalog,dct:description,カタログの説明,このカタログの内容の説明である。,rdfs:Literal,このカタログに、収録されているデータを踏まえて、データの特徴を第三者に理解してもらうための説明を記載する。,1..n,新日本市におけるオープンデータカタログ,,設定ファイル(CKAN configuration file)の　ckan.site_description,text,ー,1..1,No,必須,,,,,,,,,,
+10030,dcat:Catalog,foaf:homepage ,カタログ記載のホームページ,このカタログのホームページのURLである,foaf:Document,このカタログのホームページのURLを記載する。,0..1,https://catalog.shinnihon.example.jp/,,設定ファイル(CKAN configuration file)の　ckan.site_url,url,ー,0..1,No,任意,,,,,,,,,,
+10040,dcat:Catalog,dct:publisher,カタログの公開者,このカタログを公開する組織または個人を示す情報である。,rdfs:Literal,"このカタログを公開する組織または個人について、foaf:Agentクラスの表現方法を用いて以下の内容を記載する。
+・エージェント種別（組織／個人）
+・エージェント名称",0..1,新日本市企画部情報推進課,,,text,ー,1..1,No,必須,,,,,,,,,,
+10050,dcat:Catalog,sipx:publisherURL,カタログの公開者（URL）,このカタログを公開する組織または個人を示すホームページのURLである。,URL,このカタログを公開する組織または個人について適切なURLを記載する,0..1,https://www.shinnihon.example.jp/shinnihoncity.html,,,url,ー,1..1,No,必須,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,
+10000,dcat:Dataset,,データセット,,,DCAT名前空間タグは、「http://www.w3.org/TR/2014/REC-vocab-dcat-20140116/#Class-Dataset」の定義に従う,,,,,,,,,,,,,,,,,,,
+11010,dcat:Dataset,dct:title,データセットのタイトル,データセットの名称である。,rdfs:Literal,登録しようとしているデータセットをひと言で言い表すタイトルを記載する。,1..n,公共施設一覧,,title,text,－,1..1,Yes,必須,,,,,,,,,,
+11020,dcat:Dataset,dct:description,データセットの説明,このデータセットの内容の説明である。,rdfs:Literal,"タイトルだけでは表せない、データセットの特徴を第三者に理解してもらうための説明を記載する。
+例えば、データセットの収集目的、収集方法など。",1..n,新日本市が設置・管理する公共施設の一覧です。,,notes,text,－,1..1,Yes,必須,,,,,,,,,,
+11030,dcat:Dataset,dct:issued,データセットの発行日,このデータセットの発行日である。,rdfs:Literal,このデータセットの情報をカタログに登録した日付をW3C XML Schemaのデータ型、xsd:dateもしくはxsd:dateTimeの形式の文字列（ISO8601の日付と時間に準拠した文字列）を用いて記載する。（データセットを外部に公開した日付ではない。）,0..1,2019-11-01,,extras:issued,text,－,1..1,No,必須,,,,,,,,,,
+11040,dcat:Dataset,sipx:metadataCreated,データセットの発行日（自動設定）,このデータセットの発行日である。,xsd:dateTime,このデータセットの情報をカタログに登録した日付。カタログシステムが登録時に自動生成する項目。,0..1,2019-11-01T13:59:00,,metadata_created,text,－,1..1,No,自動,,,,,,,,,,
+11050,dcat:Dataset,dct:modified,データセットの更新日または修正日,このデータセットに含まれるデータを最後に更新・修正した日付である。,rdfs:Literal,"カタログに登録した、データセットの情報を最後に更新した日付をW3C XML Schemaのデータ型、xsd:dateもしくはxsd:dateTimeの形式の文字列（ISO8601の日付と時間に準拠した文字列）を用いて記載する。
+このプロパティが値を持たない場合、以下のいずれかを意味する。
+a) データセットの情報は登録されたのち一度も更新されていない。
+b) データセットの情報が更新された日付が不明である。
+c) データセットの情報は継続的に更新され続けている。",0..1,2019-11-02,,extras:modified,text,－,0..1,No,任意,,,,,,,,,,
+11060,dcat:Dataset,sipx:metadataModified,データセットの更新日または修正日（自動設定）,このデータセットに含まれるデータを最後に更新・修正した日付である。,xsd:dateTime,カタログに登録した、データセットの情報を最後に更新した日付。カタログシステムが登録時に自動生成する項目。,0..1,2019-11-02T18:35:00,,metadata_modified,text,－,0..1,No,自動,,,,,,,,,,
+11070,dcat:Dataset,dct:language,データセットの情報を記述する言語,このカタログに記載するデータセットの情報がどの言語で記述されているかを示す情報である。,dct:LinguisticSystem,"データセットの情報を記述する言語について、国際標準化機構のISOが発行している「ISO 639言語コード」を参照して、アルファベット2文字(ないしは3文字)で記載するべきである[SHOULD]。
+このプロパティを設定すると、カタログのプロパティ「カタログの情報を記述する言語」ではなく、このプロパティの設定がデータセットの情報を記述する言語と見なされる。
+データセットを記述する言語が一つ以上ある場合、このプロパティを複数用いること。さらに言語毎に配信手段を別々に用意できる場合、言語毎に配信クラスのインスタンスを定義する。",0..n,ja,,extras:language,text,列挙値,0..1,Yes,任意,,,,,,,,,,
+11080,dcat:Dataset,foaf:name,データセットの公開者,このデータセットを公開する組織または個人を示す情報である。,rdfs:Literal,このデータセットを公開する組織または個人を文字列で記載する。,0..1,新日本市,,extras:publisher_name,text,－,0..1,No,任意,,,,,,,,,,
+11090,dcat:Dataset,dct:publisher,データセットの公開者（URL),このデータセットを公開する組織または個人を示す情報（URL)である。,URL,このデータセットを公開する組織または個人について、適切なURLを記載するか、本基準で定めるfoaf:Agentクラスの表現方法を用いて記載する。,0..1,https://www.shinnihon.example.jp/shinnihoncity.html,,extras:publisher_uri,uri,－,0..1,No,任意,,,,,,,,,,
+11100,dcat:Dataset,sipx:creatorName,データセットの作成者,このデータセットの作成に関わった組織または個人を示す情報である。,rdfs:Literal,このデータセットの作成に関わった組織または個人の情報を記載する。,0..n,新日本市,,extras:creator_name,text,－,0..1,Yes,任意,,,,,,,,,,
+11110,dcat:Dataset,dct:creator,データセットの作成者（URL）,このデータセットの作成に関わった組織または個人を示す情報(URL)である。,URL,このデータセットの作成に関わった組織または個人について、適切なURLを記載するか、foaf:Agentクラスの表現方法を用いて記載する。,0..n,https://www.shinnihon.example.jp/shinnihoncity.html,,extras:creator_url,url,－,0..1,Yes,任意,,,,,,,,,,
+11120,dcat:Dataset,dct:accrualPeriodicity,データセットの提供頻度,このデータセットが提供される頻度である。,rdfs:Literal,このデータセットの提供頻度について、EU Vocabularies Frequency (http://publications.europa.eu/resource/authority/frequency)等を参照して、その中から適当な頻度を表す用語を選択し、そのIRIをプロパティの値として記載することを推奨する。ただし、業界団体にて策定するアプリケーションプロファイルにて、提供頻度コードを定義し、これを参照することとしてもよい。,0..1,http://publications.europa.eu/resource/authority/frequency/ANNUAL,,extras:frequency,text,列挙型,0..1,No,任意,,,,,,,,,,
+11130,dcat:Dataset,dct:identifier,データセットのID,このデータセットをユニークにするための識別子である。,rdfs:Literal,カタログの作成者が、ユニークになるような規則を決め、発行したIDを記載する。本プロパティの値は、データセットのURIの一部分を構成することもありえるが、識別子を明確にしておくことは有意義である。,0..n,https://catalog.shinnihon.example.jp/dataset/t132292d0000000002,,extras:identifier,url,－,0..1,No,任意,,,,,,,,,,
+11140,dcat:Dataset,dct:spatial,データセットの対象地域(URL),このデータセットに含まれるデータを収集するなどした対象地域(URL)である。,URL,"このデータセットの対象地域情報を以下のいずれかの方法で記載すること。
+　1) 地域を識別するコードリストを参照し、対象値域に対応したURIをプロパティの値として設定する。
+　2) 対象地域を識別するgeomatoryエンコーディングされた文字列（WKTなど）をプロパティの値として設定する。
+　3) 対象地域を識別する文字列をプロパティの値として設定する。",0..n,https://www.geonames.org/1850692/shin-nihon-shi.html,,extras:spatial_url,url,－,0..1,Yes,任意,,,,,,,,,,
+11150,dcat:Dataset,sipx:spatialText,データセットの対象地域,このデータセットに含まれるデータを収集するなどした対象地域(テキスト）,rdfs:Literal,データセットの対象地域情報をテキストで記載する,0..n,新日本市,,extras:spatial_text,text,－,0..1,Yes,任意,,,,,,,,,,
+11160,dcat:Dataset,sipx:spatialGeoJSON,データセットの対象地域（緯度経度）,このデータセットに含まれるデータを収集するなどした対象地域(GeoJSON形式）,GeoJSON,データセットの対象地域情報をGeoJSON形式で記載する。,0..n,"{
+    ""type"": ""Point"",
+    ""coordinates"": [
+        139.5382,
+        35.7255]
+}",,extras:spatial,GeoJSON,－,0..1,Yes,任意,,,,,,,,,,
+11170,dcat:Dataset,sipx:temporalStart,データセットの対象期間（開始）,このデータセットに収録されているデータが対象とする期間の開始日時である,rdfs:Literal,データセットの対象期間の開始をW3C XML Schemaのデータ型、xsd:dateもしくはxsd:dateTimeの形式の文字列（ISO8601の日付と時間に準拠した文字列）を用いて記載する。,0..1,2019-11-01,,extras:temporal_start,text,－,0..1,No,任意,,,,,,,,,,
+11180,dcat:Dataset,sipx:temporalEnd,データセットの対象期間（終了）,このデータセットに収録されているデータが対象とする期間の終了日時である,rdfs:Literal,データセットの対象期間の終了をW3C XML Schemaのデータ型、xsd:dateもしくはxsd:dateTimeの形式の文字列（ISO8601の日付と時間に準拠した文字列）を用いて記載する。,0..1,2020-10-31,,extras:temporal_end,text,－,0..1,No,任意,,,,,,,,,,
+11190,dcat:Dataset,dcat:theme,データセットの主分類,このデータセットの主分類を示す情報である。一つのデータセットは複数のテーマを扱える。,skos:Concept,このデータセットの主分類について、「データセットの分類体系」で示される分類体系を参照して、適切な分類を記載する。,0..n,住宅・土地・建設,,extras:theme,text,列挙値,0..1,Yes,任意,,,,,,,,,,
+11200,dcat:Dataset,dcat:keyword,データセットのキーワード ,このデータセットのキーワードである。検索のためのタグとしても用いられる。,rdfs:Literal,このデータセットに関連するキーワードを記載する。,0..n,"公共設備一覧,推奨データセット,新日本市",,tags,text,－,0..1,Yes,任意,,,,,,,,,,
+11210,dcat:Dataset,sipx:contactName,データセットの窓口,このデータセットに関する問い合わせを受け付ける窓口の連絡先情報である。,rdfs:Literal,データセットの窓口の連絡先情報を記載する。,0..n,新日本市企画部情報推進課,,extras:contact_name,text,－,0..1,No,任意,,,,,,,,,,
+11220,dcat:Dataset,dcat:contactPoint,データセットの窓口（URL）,このデータセットに関する問い合わせを受け付ける窓口の連絡先情報（URL)である。,URL,データセットの窓口の連絡先情報を本基準で定めるvcard:Kindクラスの表現方法を用いて記載する。,0..n,https://www.shinihon.example.jp/kikaku_vcard,,extras:contact_url,url,－,0..1,No,任意,,,,,,,,,,
+11230,dcat:Dataset,dcat:landingPage,データセットの説明ページURL,このデータセットに関する説明ページのURLである。,URL,このデータセットに関する説明ページのURLを記載する。,0..n,https://www.shinihon.example.jp/siseizyoho/zyoho/opendata20181205.html,,url,url,－,0..1,No,任意,,,,,,,,,,
+11240,dcat:Dataset,sipx:datasetURL,データセットのURL,データセットが外部からアクセスできるURL,URL,外部にあるデータセットにアクセスできるURLを記述する。,0..1,https://www.shinihon.example.jp/dataset/t132292d0000000002/resource/8378d4fc-0e2f-4d32-a7dd-4d2da8a9e117,,extras:dataset_url,url,－,0..1,No,任意,,,,,,,,,,
+11250,dcat:Dataset,sipx:representativeDistributionLicenseTitle,データセットのライセンス,データセットに含まれる配信の代表する配信を受けるためのライセンスを示す,rdfs:Literal,"・複数の配信が存在している状況で、それらを代表するライセンスが在する場合は、こちらの項目に名称を記載する。
+・適用されるライセンスについて、クリエイティブ・コモンズなどのよく知られたライセンスが適用できる場合は、その名称を記載することを推奨する。
+・独自に定めるライセンスの名称を記載することもできる。",0..1,CC BY 4.0,,license_title,text,列挙型,0..1,No,任意,,,,,,,,,,
+11260,dcat:Dataset,sipx:representativeDistributionLicense,データセットのライセンス（URL）,データセットに含まれる配信の代表する配信を受けるためのライセンスを示すURL,URL,"・複数の配信が存在している状況で、それらを代表するライセンスを示すURLが在する場合は、こちらの項目を利用してURLを指定。
+・適用されるライセンスについて、クリエイティブ・コモンズなどのよく知られたライセンスが適用できる場合は、それを識別するURIをプロパティの値として記載することを推奨する。
+・独自に定めるライセンス文書のURIをプロパティの値として記載することもできる。",0..1,https://creativecommons.org/licenses/by/4.0/,,license_url,text,列挙値,0..1,No,任意,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,
+12000,dcat:Dataset,,データセットのデータ情報,,,,,,,,,,,,,,,,,,,,,,
+12010,dcat:Dataset,void:vocabulary,語彙,データセットの内容の記述（ヘッダやデータ項目見出し、データ項目の値）で使われる語彙の定義が記述されている情報にアクセスするURLである。,URL,RDF等で定義された機械可読の情報を指すべきである。,0..1,https://www.data.go.jp/data/dataset/cas_20180312_0002/resource/314ae9d0-46e4-4228-8ec1-a63117ad1b74,,extras:vocabulary,url,ー,0..1,No,任意,,,,,,,,,,
+12020,dcat:Dataset,sipx:term,用語,データセットの内容の記述（ヘッダやデータ項目見出し、データ項目の値）で使われている代表的な用語を記す。,rdfs:Literal,ここで記述した用語は語彙データ項目で示されたURLの先で語彙の一部として定義されていることが望ましい。,0..n,"”都道府県コード又は市区町村コード,NO,都道府県名,市区町村名,名称,名称_カナ,名称_通称,POIコード,住所,方書,緯度,経度,電話番号,内線番号,法人番号,団体名,利用可能曜日,開始時間,終了時間,利用可能時間特記事項,説明,バリアフリー情報,URL,備考”",,extras:term,text,ー,0..1,Yes,任意,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,
+13000,sipx:TradingPolicy,,データ利用条件,,,,,,,,,,,,,,,,,,,,,,
+13010,sipx:TradingPolicy,sipx:contractType,契約形態,契約形態を示す。,rdfs:Literal,"契約形態について自由形式のテキストで記載する。
+※ 業界団体で定めるプロファイルでコードリストを公開することを推奨する。その際、コードリストの値としては、以下のような値が含まれることが望ましい。ただし、その他の値を設定してもよい。
+【コードリストの値の例示】譲渡/利用許諾/共同利用",0..1,利用許諾,,extras:trading_policy_contract_type,text,列挙型,0..1,No,任意,,,,,,,,,,
+13020,sipx:TradingPolicy,sipx:nda,秘密保持義務,データの購入者に、秘密保持義務を含む、契約の締結や規約への同意を求めるかを示す。,rdfs:Literal,購入者に同意を求めるか、求めないか、についてテキストで記載する。,0..1,求めない,,extras:trading_policy_nda,text,列挙型,0..1,No,任意,,,,,,,,,,
+13030,sipx:TradingPolicy,sipx:useApplication,利用用途　,どの用途であれば、利用を認めるかを示す。,rdfs:Literal,"許諾する利用用途について自由形式のテキストで記載する。
+※ 業界団体で定めるプロファイルでコードリストを公開することを推奨する。
+その際、コードリストの値としては、以下のような値が含まれることが望ましい。ただし、その他の値を設定してもよい。ただし、その他の値を設定してもよい。
+【コードリストの値の例示】商用利用／研究利用／教育利用／制限なし／個別調整",0..n,制限なし,,extras:trading_policy_use_application,text,列挙型,0..1,Yes,任意,,,,,,,,,,
+13040,sipx:TradingPolicy,sipx:redistributionRange,開示範囲,提供者に前もって知らせなくても、購入者がデータを開示してよい範囲を示す。,rdfs:Literal,"購入者が提供者に断りなく開示してよい範囲について自由形式のテキストで記載する。
+※ 業界団体で定めるプロファイルでコードリストを公開することを推奨する。その際、コードリストの値としては、以下のような値が含まれることが望ましい。ただし、その他の値を設定してもよい。
+【コードリストの値の例示】担当者限り／自部門／自社／グループ会社／個別相談",0..1,限定無し,,extras:terms_of_use_redistribution_range,text,列挙型,0..1,No,任意,,,,,,,,,,
+13050,sipx:TradingPolicy,sipx:permissibleRegion,データ活用地域,データの活用地域に制限がある場合、利用可能な国や地域を示す。,rdfs:Literal,"データの活用地域に制限がある場合、データを活用の可能な国(日本、米国など)や地域(EU加盟国、ASEAN加盟国など)を記載する。
+地域について記載する場合は、複数の国が集まった共同体のような国よりも広い概念をさす。",0..n,日本,,extras:terms_of_use_permissible_region,text,列挙型,0..1,Yes,任意,,,,,,,,,,
+13060,sipx:TradingPolicy,sipx:notices,利用に関する注意事項,データを利用するにあたって、注意すべき事項を示す。,rdfs:Literal,"データの利用に関する注意事項を自由に記載する。
+例：学術的な目的での利用に供するデータであるので、営利目的では利用しないでください
+・制限：例：ダウンロード回数に制限があり（1ヶ月あたり10回まで)
+・利用状況の把握：例、事前審査あり/データにアクセスする人員の誓約書有り/利用状況の報告あり/システムによる管理・監視あり/オンサイト利用
+・第三者への開示要件
+",0..1,"・コンテンツに関し以下の利用を禁止します。
+(1) 公序良俗に反する利用
+(2) 国家・国民の安全に脅威を与える利用
+・日本国東京地方裁判所を第一審の専属的な合意管轄裁判所
+・内容の完全性・正確性・有用性・安全性等については、いかなる保証も行いません
+・本利用規約に違反するような行為等を発見された場合には、本サイトのリクエストボッ
+クスによりご連絡ください",,extras:terms_of_use_notices,text,ー,0..1,No,任意,,,,,,,,,,
+13070,sipx:TradingPolicy,sipx:containsPersonalData,パーソナルデータの類別,提供するデータセットのパーソナルデータの類別を示す。,rdfs:Literal,"パーソナルデータの種別について自由形式のテキストで記載してください。
+※ 業界団体で定めるプロファイルでコードリストを公開することを推奨する。その際、コードリストの値としては、以下のような値が含まれることが望ましい。ただし、その他の値を設定してもよい。
+【コードリストの値の例示】個人情報（要配慮個人情報を含む）/個人情報（要配慮個人情報を含まない）/匿名加工情報/非識別加工情報/非個人情報",0..1,非個人情報,,extras:privacy_policy_contains_personal_data,text,列挙型,0..1,No,任意,,,,,,,,,,
+13080,sipx:TradingPolicy,sipx:effectivePeriodOfData,データの有効期間,年月の経過や制度改定によって、データが無効になることはあるかどうかを示す。　明確な有効期限がある場合は、開始日と終了日を示す。,rdfs:Literal,"データが有効な期間を示す開始日時と完了日時を記載する。
+たとえば、期限が切れるデータ、消費税や運賃と関連するデータ等。
+省略時は無制限とする。
+　形式　開始年月日 - 終了年月日
+　　例1　開始日のみ　　　：　2016/04/01-
+　　例2　開始終了の期間　：　2016/04/01-2016/07/01",0..1,2019/11/01-2020/10/31,,extras:usage_period_effective_period_of_data,text,列挙型,0..1,No,任意,,,,,,,,,,
+13090,sipx:TradingPolicy,sipx:expirationPeriod,利用ライセンスの期限,データの購入者が、データを利用できる期間を示す。,rdfs:Literal,"データを利用できる期間を記載する。
+　例：６カ月、1年間",0..1,"{
+　""expirationPeriodType"": ""endDate"",
+  ""endDate"":""2021-12-31"",
+}",,extras:usage_period_expiration_period,text,列挙型,0..1,No,任意,,,,,,,,,,
+13100,sipx:TradingPolicy,sipx:fee,有償無償,データが有償か無償かを示す,rdfs:Literal,データが有償か無償かを記載する。,0..1,free,,extras:fee,text,列挙型,0..1,No,任意,,,,,,,,,,
+13110,sipx:TradingPolicy,sipx:salesInfoURL ,販売情報URL,販売情報のWebページのURLを示す,URL,販売情報のWebページのURLを記載する。,0..1,https://www.shinnihon.example.jp/shinnihoncity.html,,extras:sales_info_url  ,url,－,0..1,No,任意,,,,,,,,,,
+13120,sipx:TradingPolicy,sipx:priceRange,価格帯,このデータセットを販売できる価格帯を示す。,schema:PriceSpecification,データセットを販売できる価格帯をschema:PriceSpecificationクラスの表現方法を用いて記載する。,0..1,0円,,extras:pricing_price_range,text,－,0..1,No,任意,,,,,,,,,,
+13130,sipx:TradingPolicy,sipx:noticesOfPrice,データ販売に関わる特記事項,このデータセットの販売に関わる特記事項を示す。,rdfs:Literal,このデータセットの販売に関わる特記事項を記載する。（例えば、初回30日間無料、長期契約にて優待価格で提供、など）,0..1,特に無し,,extras:pricing_notices_of_price,text,－,0..1,No,任意,,,,,,,,,,
+13140,sipx:TradingPolicy,sipx:expressWarranty,明示された保証,データ利用者に対して、保証できることを示す。,rdfs:Literal,"データ利用者に対して、保証できることがあれば自由に記載する。
+（データ主体となる個人の本人同意が得られている、測定機器が公的検定をうけている、第三者のデータベース著作物を提供するに際しライセンスをクリアしている、など）",0..1,特に無し,,extras:warranty_express_warranty,text,列挙値,0..1,No,任意,,,,,,,,,,
+13150,sipx:TradingPolicy,sipx:leagalCompliance,準拠法の対象国,データ購入者に、どの国・地域の法律に準拠することを求めるかを示す。,rdfs:Literal,"準拠法の対象国・地域を記載する。
+（基本は「日本」を対象国としてそれ以外は個々に手入力する。）",0..1,日本,,extras:warranty_legal_compliance,text,列挙値,0..1,No,任意,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,
+20000,dcat:Distribution,,配信,,,DCAT名前空間タグは　「http://www.w3.org/TR/2014/REC-vocab-dcat-20140116/#Class-Distribution」の定義に従う,,,,,,,,,,,,,,,,,,,
+21010,dcat:Distribution,dct:title,配信の名称,この配信の名称である。,rdfs:Literal,この配信をひと言で言い表すタイトルを記載する。,0..n,公共施設一覧,,resources:name,text,－,0..1,No,任意,,,,,,,,,,
+21020,dcat:Distribution,dct:description,配信の説明,この配信の内容の説明である。,rdfs:Literal,この配信を第三者に理解してもらうための説明を記載する,0..n,新日本市内の公共施設一覧のCSVファイル,,resources:description,text,－,0..1,No,任意,,,,,,,,,,
+21030,dcat:Distribution,dct:issued,配信の開始日（自動設定）,この配信でデータセットの提供を始めた日付である。カタログシステムが自動で設定。,xsd:dateTime,"この配信を開始した日付をW3C XML Schemaのデータ型、xsd:dateTimeの形式の文字列（ISO8601の日付と時間に準拠した文字列）を用いて記載する。
+このプロパティには、この配信を最初に提供した日付を記載する。",0..1,2020-03-13T00:00:00,,resources:created,text,－,0..1,No,自動,,,,,,,,,,
+21040,dcat:Distribution,sipx:resourceIssued,配信の発行日,この配信でデータセットの提供を始めた日付である。,rdfs:Literal,この配信を最初に提供した日付をW3C XML Schemaのデータ型、xsd:dateもしくはxsd:dateTimeの形式の文字列（ISO8601の日付と時間に準拠した文字列）を用いて記載する。,0..1,2020-03-13T00:00:00,,resources:issued,text,－,0..1,No,任意,,,,,,,,,,
+21050,dcat:Distribution,dct:modified,配信の最終変更日（自動設定）,この配信を最後に更新・修正した日付である。,xsd:dateTime,この配信に関する最後の変更行った日付をW3C XML Schemaのデータ型、xsd:dateTimeの形式の文字列（ISO8601の日付と時間に準拠した文字列）を用いて記載する。 配信を改定した際、カタログシステム更新時に自動登録する。,0..1,2020-03-13T00:00:00,,resources:last_modified,text,－,0..1,No,自動,,,,,,,,,,
+21060,dcat:Distribution,sipx:resourceModified,配信の変更日,この配信を最後に更新・修正した日付である。,rdfs:Literal,この配信を最初に提供した日付をW3C XML Schemaのデータ型、xsd:dateもしくはxsd:dateTimeの形式の文字列（ISO8601の日付と時間に準拠した文字列）を用いて記載する。,0..1,2020-03-14T00:00:00,,resources:modified,text,－,0..1,No,任意,,,,,,,,,,
+21070,dcat:Distribution,sipx:licenseTitle,配信のライセンス,データセット配信を受けるためのライセンス,rdfs:Literal,この配信に適用されるライセンスについて、著名ライセンスの一般表記を指定する場合に記載する。,0..1,CC BY 4.0,,resources:license_title,text,列挙値,0..1,No,任意,,,,,,,,,,
+21080,dcat:Distribution,dct:license,配信のライセンス（URL）,データセット配信を受けるためのライセンス,dct:LicenseDocument,"・この配信に適用されるライセンスについて、クリエイティブ・コモンズなどのよく知られたライセンスが適用できる場合は、それを識別するURIをプロパティの値として記載することを推奨する。
+・独自に定めるライセンス文書のURIをプロパティの値として記載することもできる。
+・適用されるライセンスがない場合、配信に関する権利表明を記載するか、データ利用条件部に利用条件を記載することもできる。",0..1,https://creativecommons.org/licenses/by/4.0/,,resources:license_url,url,列挙値,0..1,No,任意,,,,,,,,,,
+21090,dcat:Distribution,dct:rights,配信の利用規約,配信の権利表明,dct:RightsStatement,この配信に関する権利表明として、Web上で権利表明を公開するページのURLをプロパティの値として記載する、もしくは、権利表明の内容を表す文字列をプロパティの値として記載する。,0..1,https://www.shinnihon.example.jp/terms/,,extras:rights,url,－,0..1,No,任意,,,,,,,,,,
+21100,dcat:Distribution,dcat:accessURL,配信の情報提供ページURL,この配信により提供されるデータセットを取得するときにアクセスするページを示すURLである。,rdfs:Resource,この配信に関する情報として、提供されるデータセットの入手方法等が示された説明ページのURLを記載する。ダウンロードによる直接入手が可能な場合は、「ダウンロードURL」に記載すること。配信が、データセットの説明ページからのみアクセス可能である場合は、データセットの説明ページのURLを配信クラスのプロパティaccessURLの値として持つべきである[SHOULD]。,1..n,https://www.shinnihon.example.jp/dataset/t132292d0000000002,,resources:url,url,－,1..1,No,必須,,,,,,,,,,
+21110,dcat:Distribution,sipx:resourceAccessURL,配信のアクセスURL,データセットを配信するアクセスURL,URL,配信が、データセットの説明ページからのみアクセス可能である場合は、データセットの説明ページのURLを配信クラスのプロパティaccessURLの値として持つべきである。,0..1,https://www.shinnihon.example.jp/dataset/t132292d0000000002,,resources:access_url,url,－,1..1,No,必須,,,,,,,,,,
+21120,dcat:Distribution,dcat:downloadURL,配信のダウンロードURL,この配信により提供されるデータセットをファイルとしてダウンロードする際にアクセスするURLである。,rdfs:Resource,この配信で提供されるデータセットをファイルとしてダウンロード可能な場合に、そのURLを記載する。,0..n,http://www.shinnihon.example.jp/opendata/132292_public_facility.csv,,resources:download_url,url,－,0..1,No,任意,,,,,,,,,,
+21130,dcat:Distribution,dcat:byteSize,配信のバイトサイズ,この配信のバイトサイズである。,"rdfs:Literal
+",この配信のバイトサイズを数値で記載する。正確な値が不明な場合は、概算値を記載してもよい。,0..1,350000,,resources:size,text,－,0..1,No,自動,,,,,,,,,,
+21140,dcat:Distribution,dcat:mediaType,配信のメディアタイプ,IANAが定義している配信のメディアタイプである。,"dct:MediaTypeOrExtent
+",配信のメディアタイプがIANAが管理するメディアタイプとして定義されている場合は、このプロパティを記載するべきである[SHOULD]。IANAが管理するメディアタイプではない場合は、dct:formatを使用してよい[MAY]。,0..1,https://www.iana.org/assignments/media-types/text/csv,,resources:mime_type,text,－,0..1,No,自動,,,,,,,,,,
+21150,dcat:Distribution,dct:format,配信のファイル形式,この配信で配信されるファイル形式である,dct:MediaTypeOrExtent,"配信をIANAが管理するメディアタイプで適切に示せない場合、配信のファイル形式を端的に表す文字列をプロパティの値として記載する。
+配信する際のメディアタイプを示すコードをIANAが管理するメディアタイプである場合はdcat:mediaTypeを使用するべきである[SHOULD]。",0..1,CSV,,resources:format,text,－,0..1,No,自動,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,
+22000,dcat:Distribution,,配信のデータ情報,,,,,,,,,,,,,,,,,,,,,,
+22010,dcat:Distribution,sipx:resourceSchemaURL,スキーマ,データセットの配信別の記述の元になっているスキーマの定義を参照できるURLを記す。,URL,ファイルやAPIをプログラムが処理するにあたって必要なスキーマ情報を機械可読の形で提供する。,0..1,https://schema.org/CivicStructure,,resources:schema,url,,0..1,No,任意,,,,,,,,,,
+22020,dcat:Distribution,sipx:resourceSchemaType,スキーマタイプ,スキーマデータ項目の値のタイプを記述する。,rdfs:Literal,スキーマのタイプをテキストで指定する。,0..1,JSON-LD,,resources:schema_type,text,列挙型,0..1,No,任意,,,,,,,,,,
+22030,dcat:Distribution,sipx:resourceNgsiTenant,NGSIテナント,データを配信するテナントを記す。,rdfs:Literal,NGSI形式のデータをAPIで取得する際に、この値をFiware-Serviceとして使用することで、テナントを指定してデータを取得する。,0..1,shinnihon,,resources:ngsi_tenant,text,,0..1,No,任意,,,,,,,,,,
+22040,dcat:Distribution,sipx:resourceNgsiServicePath,NGSIサービスパス,データを配信するサービスパスを記す,rdfs:Literal,NGSI形式のデータをAPIで取得する際に、この値をFiware-ServicePathとして使用することで、サービスを指定してデータを取得する。,0..1,/shisetsu,,resources:ngsi_service_path,text,,0..1,No,任意,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,
+14000,dcat:Dataset,,CADDEコネクタ制御(詳細検索に必要な項目),,,,,,,,,,,,,,,,,,,,,,
+14010,dcat:Dataset,sipx:caddecProviderID,提供者ID,"CADDE利用者コネクタがデータ提供者を特定するために用いる識別子
+
+※利用者コネクタを使う場合は必須",rdfs:Literal,データセットまたはリソースの提供主体となる提供者側コネクタを特定するために用いる。,0..1,caddeprovider001,,extras:caddec_provider_id,text,-,1..1,No,必須,,,,,,,,,,
+14020,dcat:Dataset,sipx:caddecDatasetIDForDetail,詳細検索用データセットID,CADDEコネクタが詳細検索時に必要な詳細検索用CKANのデータセットID,rdfs:Literal,CADDEコネクタが詳細検索時のkeyとして利用する。また，詳細検索用データセットIDの有無を詳細検索可否の判断に利用する。,0..1,12ab33cc-879e-4fd9-bbd3-389ab345eea6,,extras:caddec_dataset_id_for_detail,text,-,0..1,No,任意,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,
+23000,dcat:Distribution,,CADDEコネクタ制御(データ取得に必要な項目),,,,,,,,,,,,,,,,,,,,,,
+23010,dcat:Distribution,sipx:caddecResourceType,リソース提供手段の識別子,CADDEコネクタがリソースの提供手段を特定するために用いる識別子,rdfs:Literal,"コネクタを用いたデータ取得の際、利用者側コネクタおよび提供者側コネクタが取得および提供しようとしているリソースの提供手段(NGSI API, FTPファイル取得等)を特定するために用いる。",0..1,api/ngsi,,resources:caddec_resource_type,text,列挙型,0..1,No,任意,,,,,,,,,,
+23020,dcat:Distribution,sipx:caddecContractRequired,契約確認の要否,CADDEコネクタがデータセットまたはリソースを利用するために契約の確認を要するか否かを表す識別子,rdfs:Literal,コネクタを用いたデータ取得の際に契約の確認を要するか否かを、利用者側コネクタが判断するために利用する。,0..1,required,,resources:caddec_contract_required,text,"列挙型
+",0..1,No,任意,,,,,,,,,,
+23030,dcat:Distribution,sipx:caddecRequired,コネクタ利用の要否,データ利用者がリソースを取得するためにコネクタを利用する必要があるか否かを表す識別子,rdfs:Literal,データ取得の際に利用者側コネクタが必要であるか否かを、データ利用者が判断するために利用する。,0..1,required,,resources:caddec_required,text,列挙型,0..1,No,任意,,,,,,,,,,
+23040,dcat:Distribution,sipx:caddecResourceIDForProvenance,交換実績記録用リソースID,CADDEコネクタが、リソースの来歴確認を可能とするために、リソースに対して割り当てる識別子,rdfs:Literal,提供者側コネクタのデータ提供時、後の来歴確認のためにリソースの提供記録(交換実績記録)を行う際に用いる。,0..1,3288abc1-a123-4bc1-334f-82ae3803eecd,,resources:caddec_resource_id_for_provenance,text,-,0..1,No,任意,,,,,,,,,,

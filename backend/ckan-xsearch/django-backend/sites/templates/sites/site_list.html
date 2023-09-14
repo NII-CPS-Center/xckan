@@ -1,0 +1,192 @@
+{% load static %}
+{% load verbose_name %}
+{% load yesno_image %}
+{% load attrib %}
+<!-- Bootstrap4 -->
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+<!-- Bootstrap4 -->
+
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+<head>
+    <title>CKANサイト一覧</title>
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />    
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/nav_sidebar.css">
+    <script src="/static/admin/js/nav_sidebar.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/changelists.css">
+    <script src="/admin/jsi18n/"></script>
+    <script src="/static/admin/js/vendor/jquery/jquery.js"></script>
+    <script src="/static/admin/js/jquery.init.js"></script>
+    <script src="/static/admin/js/core.js"></script>
+    <script src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+    <script src="/static/admin/js/actions.js"></script>
+    <script src="/static/admin/js/urlify.js"></script>
+    <script src="/static/admin/js/prepopulate.js"></script>
+    <script src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+    <meta name="robots" content="NONE,NOARCHIVE">
+</head>
+<body class=" app-sites model-site change-list"
+      data-admin-utc-offset="32400">
+
+<!-- Container -->
+<div id="container">
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+            <h1 id="site-name">CKANサイト一覧</h1>
+        </div>
+        {% include "sites/block_user_tools.html" %}
+    </div>
+    <!-- END Header -->
+
+    <!--div class="breadcrumbs">
+        <a href="/">トップページ</a>
+        &rsaquo; CKANサイト一覧
+    </div-->
+    <div class="main shifted" id="main">
+        <div class="content">
+            <!-- Content -->
+            {% include "sites/block_messagelist.html" %}
+            <div id="content" class="">
+                <div id="content-main">
+                    <div class="module" id="changelist">
+                        <div class="changelist-form-container">
+                            <div id="changelist-form">
+                                {% if user.is_authenticated and perms.sites.add_site %}
+                                <div>
+                                    <input type="button" data-toggle="modal" data-target="#importModel" value="インポート" />
+                                    <a href="/sites/export"><input type="button" value="エクスポート" /></a>
+                                </div>
+                                {% endif %}
+                                <form>
+                                    <div class="form-group row" style="margin:5px;padding:5px;border:1px solid #888;">
+                                        <lavel class="col-sm-2 col-form-label col-form-label-sm">List conditions</lavel>
+                                        <label for="inputKey" class="col-sm-1 col-form-label col-form-label-sm">Keyword</label>
+                                        <div class="fcol-sm-3">
+                                            <input type="text" class="form-control form-control-sm" id="inputKey" name="key" value="{{ key }}">
+                                        </div>
+                                        <label for="inputRows" class="col-sm-1 col-form-label col-form-label-sm">Rows</label>
+                                        <div class="col-sm-1">
+                                            <input type="text" class="form-control form-control-sm" id="inputRows" name="rows" value="{{ rows }}">
+                                        </div>
+                                        <div class="col-auto">
+                                            <button type="submit" class="btn btn-primary btn-sm mb-1">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="results">
+                                    {% if top is not None %}
+                                    <table id="result_list">
+                                        <thead>
+                                        <tr>
+                                            {% for field in fields %}
+                                            <th scope="col" class="sortable column-title">
+                                                <div class="text">
+                                                    {% if sort_by == field %}
+                                                    <a href="?sort_by=-{{field}}">
+                                                    {% else %}
+                                                    <a href="?sort_by={{field}}">
+                                                    {% endif %}
+                                                    {% verbose_name top field %}
+                                                </a></div>
+                                                <div class="clear"></div>
+                                            </th>
+                                            {% endfor %}
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for site in sites %}
+                                            <tr>
+                                                {% for field in fields %}
+                                                <td class="field-{{field}}">
+                                                    {% if field == 'title' %}
+                                                        <a href="{% url 'site-detail' site.id %}">
+                                                            {{ site|attrib:field }}
+                                                        </a>
+                                                    {% else %}
+                                                        {% yesno_image site field %}
+                                                    {% endif %}
+                                                </td>
+                                                {% endfor %}
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    {% else %}
+                                        (サイトが登録されていません)
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br class="clear">
+                <nav id="changelist-filter" style="background: white">
+                    <ul class="pagination justify-content-center g-mt-28 g-mb-28">
+                        <!-- 前へ の部分 -->
+                        {% if page_obj.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        <!-- 数字の部分 -->
+                        {% for num in page_obj.paginator.page_range %}
+                            {% if num <= page_obj.number|add:5 and num >= page_obj.number|add:-5 %}
+
+                                {% if page_obj.number == num %}
+                                    <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
+                                {% else %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+
+                        <!-- 次へ の部分 -->
+                        {% if page_obj.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+            <div class="modal fade" id="importModel" tabindex="-1" role="dialog" aria-labelledby="importModel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">サイト情報一括アップロード</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="import-form" action="/sites/import" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <input type="file" name="files" />
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                            <button type="button" class="btn btn-primary" onclick="$('#import-form').submit()">アップロード</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END Content -->
+            <div id="footer"></div>
+        </div>
+    </div>
+</div>
+<!-- END Container -->
+</body>
+</html>

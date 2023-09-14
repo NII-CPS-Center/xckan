@@ -1,0 +1,37 @@
+.nuxt-content h2 {
+    display: flex;
+    align-items: center;
+    padding-bottom: 4px;
+    margin-bottom: 14px;
+    border-bottom: 2px solid #EA5449;
+    font-weight: bold;
+    font-size: 2.3rem;
+    color: #333;
+}
+
+.nuxt-content h3 {
+    display: flex;
+    align-items: center;
+    padding-bottom: 2px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid#D3D3D3;
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: #333;
+    margin-top: 1.5em;
+}
+
+.nuxt-content ul, ol {
+    margin: auto;
+    padding: revert;
+    list-style: circle;
+}
+
+.nuxt-content blockquote {
+    border-left: .4rem solid #ddd;
+    color: #777;
+    padding-left: 1em;
+    padding-right: 0;
+    margin-left: 1.5em;
+    font-size: .95em;
+}

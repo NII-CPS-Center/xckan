@@ -1,0 +1,10 @@
+<div id="user-tools">
+    <a href="/">トップページ</a> /
+    <a href="{% url 'index' %}">CKANサイト一覧</a> /
+    {% if user.is_authenticated %}
+        <a href="{% url 'admin:index' %}">管理サイト</a> /
+        <a href="{% url 'admin:logout' %}?next=/">ログアウト</a>
+    {% else %}
+        <a href="{% url 'admin:login' %}?next=/">ログイン</a>
+    {% endif %}
+</div>

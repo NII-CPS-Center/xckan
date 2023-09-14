@@ -1,0 +1,18 @@
+# .env の例
+# このファイルを .env にコピーし、必要な項目を編集してください。
+
+# Frontend settings
+BACKEND_API=http://xckan-dev:25000/api
+
+# Backend settings
+XCKAN_ALLOWED_HOSTS=*
+DJANGO_SUPERUSER_USERNAME=xckan
+DJANGO_SUPERUSER_PASSWORD=xckan
+
+# Mail (SMTP) server settings
+XCKAN_SYSTEM_NAME=xckan docker running on xckan-dev
+XCKAN_SYSTEM_FROM=noreply@xckan.docker
+SMTP_HOST=mysmtp.example.com
+SMTP_PORT=465
+SMTP_USER=smtpuser@mysmtp.example.com
+SMTP_PASS=ThisIsMySMTPAuthPassword00

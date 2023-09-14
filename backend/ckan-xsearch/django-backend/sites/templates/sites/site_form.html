@@ -1,0 +1,245 @@
+{% load static %}
+{% load verbose_name %}
+{% load yesno_image %}
+<!-- Bootstrap4 -->
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+<!-- Bootstrap4 -->
+
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+<head>
+    <title>CKANサイト詳細</title>
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />    
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/nav_sidebar.css">
+    <script src="/static/admin/js/nav_sidebar.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'sites/site_form.css' %}">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+    <meta name="robots" content="NONE,NOARCHIVE">
+</head>
+
+
+<body class=" app-sites model-site change-form"
+      data-admin-utc-offset="32400">
+
+<!-- Container -->
+<div id="container">
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+            <h1 id="site-name">CKANサイト詳細</h1>
+        </div>
+        {% include "sites/block_user_tools.html" %}
+    </div>
+    <!-- END Header -->
+    <!--div class="breadcrumbs">
+        <a href="/">ホーム</a>
+        &rsaquo; <a href="/sites/">CKANサイト一覧</a>
+        &rsaquo; Ckanサイト詳細
+    </div-->
+    <div class="main shifted" id="main">
+        <div class="content">
+            <!-- Content -->
+            {% include "sites/block_messagelist.html" %}
+            <div id="content" class="colM">
+                <h2>{{ site.title }}</h2>
+                <div id="content-main">
+                    {% if user.is_authenticated and perms.sites.add_site %}
+                        <button id="btn_validate" class="button"
+                            onclick="validate()">検査</button>
+                        <button id="btn_edit" class="button"
+                            onclick="location.href='{% url 'admin:sites_site_change' site.id %}'">管理</button>
+                    {% endif %}
+                    <form method="POST" id="site_form" enctype="multipart/form-data" novalidate>
+                        {% csrf_token %}
+                        <fieldset class="module aligned">
+                            <div class="form-row">
+                                <label class="required">{% verbose_name site 'title' %}:</label>
+                                <span>{{ site.title }}</span>
+                            </div>
+                            <div class="form-row">
+                                <label class="required">{% verbose_name site 'dataset_url' %}:</label>
+                                <span class="url"><a href="{{ site.dataset_url }}">{{ site.dataset_url }}</a></span>
+                                <strong id="dateset_url_validate"></strong>
+                            </div>
+                            <div class="form-row">
+                                <label class="required">{% verbose_name site 'ckanapi_url' %}:</label>
+                                <span class="url"><a href="{{ site.ckanapi_url }}">{{ site.ckanapi_url }}</a></span>
+                                <strong id="ckanapi_url_validate"></strong>
+                            </div>
+                            <div class="form-row">
+                                <label class="required">{% verbose_name site 'proxy_url' %}:</label>
+                                <span class="url"><a href="{{ site.proxy_url }}">{{ site.proxy_url }}</a></span>
+                                <strong id="proxy_url_validate"></strong>
+                            </div>
+                            <div class="form-row">
+                                <label class="required">{% verbose_name site 'is_fq_available' %}:</label>
+                                <span>{{ site.is_fq_available|yesno:'可,不可' }}</span> <strong id="fq_validate"></strong>
+                            </div>
+                            <div class="form-row">
+                                <label class="required">{% verbose_name site 'enable' %}:</label>
+                                <span>{{ site.enable|yesno:'更新可能,更新停止中' }}</span>
+                                <strong id="enable_validate"></strong>
+                            </div>
+                            <div class="form-row">
+                                <label class="required">{% verbose_name site 'update_start_datetime' %}:</label>
+                                {% if site.update_start_datetime and site.update_interval %}
+                                    <span>{{ site.update_start_datetime }} から </span>
+                                    <span>{{ site.update_interval }} ごと</span>
+                                    <span>前回: {{ site.executed_at }}</span>
+                                    <span>次回: {{ site.update_time }}</span>
+                                {% else %}
+                                    <span>実行しない</span>
+                                {% endif %}
+                            </div>
+                            <div class="form-row">
+                                <label class="required">{% verbose_name site 'result' %}:</label>
+                                <span>{{ site.result }}</span>
+                            </div>
+                            <div class="form-row">
+                                <label class="required">{% verbose_name site 'full_update_start_datetime' %}:</label>
+                                {% if site.full_update_start_datetime and site.full_update_interval %}
+                                    <span>{{ site.full_update_start_datetime }} から </span>
+                                    <span>{{ site.full_update_interval }} ごと</span>
+                                    <span>前回: {{ site.full_executed_at }}</span>
+                                    <span>次回: {{ site.full_update_time }}</span>
+                                {% else %}
+                                    <span>実行しない</span>
+                                {% endif %}
+                            </div>
+                            <div class="form-row">
+                                <label class="required">{% verbose_name site 'full_result' %}:</label>
+                                <span>{{ site.full_result }}</span>
+                            </div>
+                            <div class="form-row">
+                                <label class="required">{% verbose_name site 'tag_vocabulary' %}:</label>
+                                <span>{{ site.tag_vocabulary }}</span>
+                            </div>
+                            <div class="form-row">
+                                <label class="required">{% verbose_name site 'tag_default' %}:</label>
+                                <span>{{ site.tag_default }}</span>
+                            </div>
+                            <div class="form-row">
+                                <label class="required">{% verbose_name site 'publisher' %}:</label>
+                                <span>{{ site.publisher }}</span>
+                            </div>
+                            <div class="form-row">
+                                <label class="required">{% verbose_name site 'contact' %}:</label>
+                                {% if user.is_authenticated and perms.sites.add_site %}
+                                <span>{{ site.contact }}</span>
+                                {% else %}
+                                <span>（非公開）</span>
+                                {% endif %}
+                            </div>
+                            <div class="form-row">
+                                <label class="required">{% verbose_name site 'contact_email' %}:</label>
+                                {% if user.is_authenticated and perms.sites.add_site %}
+                                <span>{{ site.contact_email }}</span>
+                                {% else %}
+                                <span>（非公開）</span>
+                                {% endif %}
+                            </div>
+                            <div class="form-row">
+                                <label class="required">{% verbose_name site 'notify_contact_email' %}:</label>
+                                <span>{{ site.notify_contact_email|yesno:'メール通知する,メール通知しない' }}</span>
+                            </div>
+
+                            {% if user.is_authenticated and perms.sites.add_site %}
+                                {% for field in form %}
+                                    <div class="form-row field-{{ field.name }}">
+                                        <label class="required"
+                                               for="{{ field.id_for_label }}">{{ field.label }}:</label>
+                                        {{ field }}
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <div class="form-row">
+                                    <label class="required">{% verbose_name site 'memo' %}:</label>
+                                    <span>{{ site.memo }}</span>
+                                </div>
+                            {% endif %}
+                        </fieldset>
+                        {% if user.is_authenticated and perms.sites.add_site %}
+                            <input type="submit" value="OK">
+                        {% endif %}
+                    </form>
+                </div>
+                <br class="clear">
+            </div>
+            <!-- END Content -->
+            <div id="footer"></div>
+        </div>
+    </div>
+</div>
+<!-- END Container -->
+{% if user.is_authenticated and perms.sites.add_site %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        function parse(elem, data) {
+            if (!data) {
+                elem.css('color', 'red').text('URLを確認してください')
+            } else {
+                if (data['success']) {
+                    elem.css('color', 'green').text('OK')
+                } else {
+                    elem.css('color', 'red').text(data['message'] ? data['message'] : 'エラーメッセージがありません。')
+                }
+            }
+        }
+
+        function parse_fq(elem, data) {
+            if (!data) {
+                elem.css('color', 'red').text('fq は利用できません')
+            } else {
+                if (data['success']) {
+                    elem.css('color', 'green').text(data['message'])
+                } else {
+                    elem.css('color', 'red').text(data['message'] ? data['message'] : 'エラーメッセージがありません。')
+                }
+            }
+        }
+
+        function show_status(elem, data) {
+            if (data['success']) {
+                elem.css('color', 'green').text(data['message'] ? data['message'] : 'OK')
+            } else {
+                elem.css('color', 'red').text(data['message'] ? data['message'] : 'エラーメッセージがありません。')
+            }
+        }
+
+        function validate() {
+            $.ajax({url: '/sites/{{ site.id }}/validate', type: 'get'})
+                .done((data) => {
+                    console.log(data);
+                    parse($("#dateset_url_validate"), data['dataset_url']);
+                    parse($("#ckanapi_url_validate"), data['ckanapi_url']);
+                    parse($("#proxy_url_validate"), data['proxy_url']);
+                    parse_fq($("#fq_validate"), data['fq']);
+                    show_status($("#enable_validate"), data['enable']);
+                })
+                .error((errData) => {
+                    if (errData.status === 401) {
+                        const data = {'success': false, 'message': '権限がありません。'}
+                        parse($("#dateset_url_validate"), data);
+                        parse($("#ckanapi_url_validate"), data);
+                        parse($("#proxy_url_validate"), data);
+                        parse($("#fq_validate"), data);
+                        show_status($("#enable_validate"), data);
+                    } else {
+                        const data = errData.responseJSON;
+                        parse($("#dateset_url_validate"), data['dataset_url']);
+                        parse($("#ckanapi_url_validate"), data['ckanapi_url']);
+                        parse($("#proxy_url_validate"), data['proxy_url']);
+                        parse($("#fq_validate"), data['fq']);
+                        show_status($("#enable_validate"), data['enable']);
+                    }
+                });
+        }
+    </script>
+{% endif %}
+</body>
+</html>
