@@ -31,10 +31,15 @@ class Mail(object):
     system_name = os.getenv("XCKAN_SYSTEM_NAME", "カタログ横断検索システム")
     from_address = os.getenv("XCKAN_SYSTEM_FROM", "noreply@xckan.nii.ac.jp")
     smtp_host = os.getenv("SMTP_HOST")
-    if smtp_host is None:
-        logger.warning("環境変数 SMTP_HOST が未指定です。")
+    if smtp_host is None or smtp_host == '':
+        logger.warning(
+            "環境変数 SMTP_HOST が未指定なので通知メールは送信しません。")
 
-    smtp_port = int(os.getenv("SMTP_PORT", 465))
+    try:
+        smtp_port = int(os.getenv("SMTP_PORT", 465))
+    except ValueError:
+        smtp_port = 465
+
     smtp_user = os.getenv("SMTP_USER")
     smtp_pass = os.getenv("SMTP_PASS")
 
@@ -60,7 +65,7 @@ class Mail(object):
         to_addresses: List[str]
             List of recipient addresses.
         """
-        if cls.smtp_host is None:
+        if cls.smtp_host is None or cls.smtp_host == '':
             return
 
         msg = MIMEText(
